@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('code')->unique();
             $table->string('name');
-            $table->decimal('discount_percentage', 5, 2);
+            $table->enum('type', ['percentage','nominal'])->default('percentage');
+            $table->decimal('discount_percentage', 5, 2)->default(0);
+            $table->decimal('discount_nominal', 15, 2)->default(0);
             $table->dateTime('start_date');
             $table->dateTime('end_date');
             $table->boolean('is_active')->default(true);
