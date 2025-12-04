@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // kg, liter, pcs, etc
-            $table->string('symbol'); // kg, L, pcs
+            $table->string('name');
+            $table->string('code');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

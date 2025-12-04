@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('payment_methods', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // QRIS, Gopay, ShopeePay, Transfer, Cash
-            $table->string('code')->unique(); // qris, gopay, shopeepay, transfer, cash
-            $table->string('type')->default('cash'); // cash, ewallet, transfer
+            $table->string('name');
+            $table->string('code')->unique();
+            $table->enum('type', ['cash','online'])->default('cash');
+            $table->string('provider')->nullable();
+            $table->text('configuration')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->boolean('is_online')->default(false);
-            $table->text('configuration')->nullable(); // JSON config untuk payment gateway
             $table->timestamps();
         });
     }

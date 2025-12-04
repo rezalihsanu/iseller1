@@ -17,15 +17,10 @@ return new class extends Migration
             $table->string('code_barang')->unique();
             $table->text('description')->nullable();
             $table->decimal('price', 15, 2);
-            $table->decimal('discount', 5, 2)->default(0);
             $table->integer('stock')->nullable();
             $table->string('foto_produk')->nullable();
-            
-            // Foreign keys
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('unit_id')->constrained()->onDelete('cascade');
-            $table->foreignId('default_payment_id')->nullable()->constrained('payment_methods');
-            
+            $table->foreignId('category_id')->constrained('categories');
+            $table->foreignId('unit_id')->constrained('units');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

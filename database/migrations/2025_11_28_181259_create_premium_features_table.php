@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('premium_features', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('feature_name'); // reporting, etc
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('feature_name');
             $table->boolean('is_active')->default(false);
             $table->dateTime('activated_at')->nullable();
             $table->dateTime('expires_at')->nullable();

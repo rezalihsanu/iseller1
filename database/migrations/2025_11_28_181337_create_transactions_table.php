@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained()->onDelete('cascade');
+            $table->foreignId('order_id')->nullable()->constrained('orders')->nullOnDelete();
             $table->decimal('amount', 15, 2);
-            $table->enum('type', ['income', 'expense']);
+            $table->enum('type', ['income','expense']);
             $table->string('description');
             $table->decimal('balance_after', 15, 2);
             $table->timestamps();

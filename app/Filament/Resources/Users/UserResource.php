@@ -20,9 +20,9 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserCircle;
 
-    protected static ?string $recordTitleAttribute = 'User Managementß';
+    protected static ?string $recordTitleAttribute = 'User';
 
     public static function form(Schema $schema): Schema
     {
@@ -54,5 +54,15 @@ class UserResource extends Resource
             'view' => ViewUser::route('/{record}'),
             'edit' => EditUser::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'User Management';
+    }
+
+    public static function getNavigationLabel(): string
+    {
+        return 'Users';
     }
 }
